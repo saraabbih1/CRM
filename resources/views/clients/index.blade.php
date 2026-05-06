@@ -23,6 +23,16 @@
     </div>
 @endif
 
+        @if($client->reminder_at)
+            <span
+                class="client-reminder"
+                data-client-id="{{ $client->id }}"
+                data-client-name="{{ $client->name }}"
+                data-reminder-at="{{ $client->reminder_at->format('Y-m-d\TH:i:s') }}"
+                hidden
+            ></span>
+        @endif
+
         <a href="{{ route('clients.edit', $client->id) }}">Edit</a>
 
     </div>
@@ -36,3 +46,27 @@
     
 </form>
 @endforeach
+
+<script>
+    const reminders = [...document.querySelectorAll('.client-reminder')].map((element) => ({
+        id: element.dataset.clientId,
+        name: element.dataset.clientName,
+        reminderAt: new Date(element.dataset.reminderAt).getTime(),
+    }));
+
+    function checkReminders() {
+        const now = Date.now();
+
+        reminders.forEach((reminder) => {
+            const storageKey = `client-reminder-alerted-${reminder.id}-${reminder.reminderAt}`;
+
+            if (reminder.reminderAt <= now && !localStorage.getItem(storageKey)) {
+                localStorage.setItem(storageKey, '1');
+                alert(`Reminder: contacter ${reminder.name}`);
+            }
+        });
+    }
+
+    checkReminders();
+    setInterval(checkReminders, 30000);
+</script>
