@@ -20,4 +20,19 @@ public function store(Request $request){
     Client::create($request->all());
     return redirect()->route('clients.index');
 }
+public function edit($id){
+    $client = Client::findOrFail($id);
+    return view('clients.edit', compact('client'));
+}
+public function update(Request $request, $id){
+    $client = Client::findOrFail($id);
+
+    $client->update([
+        'name' => $request->name,
+        'phone' => $request->phone,
+        'status' => $request->status
+    ]);
+
+    return redirect()->route('clients.index');
+}
 }
