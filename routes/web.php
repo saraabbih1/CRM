@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 Route::resource('clients', ClientController::class);
 Route::get('/scrape', [ScraperController::class, 'scrape']);
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
