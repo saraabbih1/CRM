@@ -8,7 +8,7 @@ class ClientController extends Controller
 {
     //affichage du clients 
     public function index(){
-        $client=Client::all();
+        $clients=Client::all();
         return view('clients.index',compact('clients'));
     }
 //from ajouter
