@@ -2,7 +2,6 @@
     @csrf
     <input type="text" name="name" placeholder="Nom">
     <input type="text" name="phone" placeholder="Téléphone">
-    <input type="date" name="reminder_date">
     <input type="datetime-local" name="reminder_at">
 
      <select name="status">

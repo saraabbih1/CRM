@@ -24,7 +24,6 @@ class ClientController extends Controller
         'name' => $request->name,
         'phone' => $request->phone,
         'status' => $request->status,
-        'reminder_date' => $request->reminder_date,
         'reminder_at' => $request->reminder_at
     ]);
 
@@ -45,7 +44,6 @@ class ClientController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'status' => $request->status,
-            'reminder_date' => $request->reminder_date,
             'reminder_at' => $request->reminder_at
         ]);
         return redirect()->route('clients.index');

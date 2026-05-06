@@ -17,6 +17,11 @@
         @else
             <span>{{ $client->status }}</span>
         @endif
+        @if($client->reminder_at && $client->reminder_at <= now())
+    <div style="color:red;">
+        🔔 Reminder: contacter ce client !
+    </div>
+@endif
 
         <a href="{{ route('clients.edit', $client->id) }}">Edit</a>
 
@@ -28,5 +33,6 @@
     <button onclick="return confirm('Supprimer ce client ?')">
         Delete
     </button>
+    
 </form>
 @endforeach
