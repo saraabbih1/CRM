@@ -2,6 +2,8 @@
     @csrf
     <input type="text" name="name" placeholder="Nom">
     <input type="text" name="phone" placeholder="Téléphone">
+    <input type="date" name="reminder_date">
+    <input type="datetime-local" name="reminder_at">
 
      <select name="status">
         <option value="new">New</option>
@@ -9,6 +11,6 @@
         <option value="paye">Payé</option>
         <option value="relance">À relancer</option>
     </select>
-    
+
     <button type="submit">Ajouter</button>
 </form>

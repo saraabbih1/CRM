@@ -19,14 +19,21 @@ class ClientController extends Controller
         return view('clients.create');
     }
     //stocage des client
-    public function store(Request $request)
-    {
-        Client::create($request->all());
-        return redirect()->route('clients.index');
-    }
+   public function store(Request $request){
+    Client::create([
+        'name' => $request->name,
+        'phone' => $request->phone,
+        'status' => $request->status,
+        'reminder_date' => $request->reminder_date,
+        'reminder_at' => $request->reminder_at
+    ]);
+
+    return redirect()->route('clients.index');
+}
     public function edit($id)
     {
         $client = Client::findOrFail($id);
+        
         return view('clients.edit', compact('client'));
     }
 
@@ -37,7 +44,9 @@ class ClientController extends Controller
         $client->update([
             'name' => $request->name,
             'phone' => $request->phone,
-            'status' => $request->status
+            'status' => $request->status,
+            'reminder_date' => $request->reminder_date,
+            'reminder_at' => $request->reminder_at
         ]);
         return redirect()->route('clients.index');
     }
