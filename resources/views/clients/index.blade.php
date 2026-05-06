@@ -21,4 +21,12 @@
         <a href="{{ route('clients.edit', $client->id) }}">Edit</a>
 
     </div>
+    <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+
+    <button onclick="return confirm('Supprimer ce client ?')">
+        Delete
+    </button>
+</form>
 @endforeach
